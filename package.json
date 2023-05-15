@@ -1,7 +1,7 @@
 {
   "name": "use-command-score",
   "version": "0.0.0",
-  "description": "Simple, fast fuzzy search hook",
+  "description": "Tiny, fast fuzzy ⚡️earch",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
@@ -19,7 +19,20 @@
     "type": "git",
     "url": "git+https://github.com/codeshifu/use-command-score.git"
   },
-  "keywords": [],
+  "keywords": [
+    "fuzzy",
+    "search",
+    "use-command-score",
+    "command-score",
+    "query",
+    "filter",
+    "list",
+    "ranking-algorithm",
+    "autocomplete",
+    "matching",
+    "react",
+    "typescript"
+  ],
   "author": "",
   "license": "ISC",
   "bugs": {
