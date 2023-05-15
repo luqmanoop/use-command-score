@@ -1,7 +1,7 @@
 {
   "name": "use-command-score",
   "version": "0.0.0",
-  "description": "simple, fast fuzzy search",
+  "description": "Simple, fast fuzzy search hook",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",

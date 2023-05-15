@@ -1,3 +1,1 @@
-export const App = () => {
-  return <div>Hello, world!</div>;
-};
+// import { commandScore } from "./lib";

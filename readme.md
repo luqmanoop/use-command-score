@@ -1,2 +1,3 @@
 # use-command-score
-> Simple, fast fuzzy search
+
+> Simple, fast fuzzy search hook
