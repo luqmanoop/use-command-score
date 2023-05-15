@@ -88,16 +88,10 @@ const movies = [
   }
 ];
 
-const Movies = ({
-  searchKeys,
-  limit
-}: {
-  searchKeys: string[];
-  limit?: number;
-}) => {
+const Movies = ({ keys, limit }: { keys: string[]; limit?: number }) => {
   const [query, setQuery] = useState("");
 
-  const moviesResult = useCommandScore(query, movies, searchKeys, { limit });
+  const moviesResult = useCommandScore(query, movies, { keys, limit });
 
   return (
     <div>
@@ -139,19 +133,19 @@ export default meta;
 
 export const Default: StoryObj<typeof Movies> = {
   args: {
-    searchKeys: ["title"]
+    keys: ["title"]
   }
 };
 
 export const WithNestedKeys: StoryObj<typeof Movies> = {
   args: {
-    searchKeys: ["title", "meta.actors", "meta.director"]
+    keys: ["title", "meta.actors", "meta.director"]
   }
 };
 
 export const WithLimit: StoryObj<typeof Movies> = {
   args: {
-    searchKeys: ["title", "meta.actors", "meta.director"],
-    limit: 1
+    limit: 1,
+    keys: ["title", "meta.actors", "meta.director"]
   }
 };
