@@ -2,6 +2,10 @@
 
 > Simple, fast fuzzy search hook
 
+## Live demo
+
+https://use-command-score.vercel.app
+
 ## Install
 
 ```sh
@@ -11,36 +15,19 @@ npm install use-command-score
 ## Usage
 
 ```ts
-useCommandScore("al", ["Ronaldo", "Messi", "Neymar", "Haaland"]); // ['Ronaldo', 'Haaland']
-```
-
-```ts
 useCommandScore("vsc", ["Vim", "Google chrome", "Visual studio code"]); // ['Visual studio code']
 ```
 
-### Match object key path
+## Examples
+
+Match object keys in an array. See [live demo](https://use-command-score.vercel.app/?path=/story/moviesfuzzysearch--with-nested-keys)
 
 ```ts
-const movies = [
-  {
-    title: "The Godfather",
-    year: 1972,
-    rating: 9.2,
-    meta: {
-      actors: ["Marlon Brando", "Al Pacino", "James Caan"],
-      director: "Francis Ford Coppola"
-    }
-  },
-  {
-    title: "The Dark Knight",
-    year: 2008,
-    rating: 9.0,
-    meta: {
-      actors: ["Christian Bale", "Heath Ledger", "Aaron Eckhart"],
-      director: "Christopher Nolan"
-    }
-  }
-];
-
 useCommandScore("hger", movies, ["title", "meta.actors", "meta.director"]);
+```
+
+Limit result. See [live demo](https://use-command-score.vercel.app/?path=/story/moviesfuzzysearch--with-limit)
+
+```ts
+useCommandScore("rings", movies, ["title"], { limit: 3 });
 ```
