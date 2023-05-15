@@ -35,35 +35,33 @@ useCommandScore("hger", movies, {
 
 ### query
 
+Search query
+
 Type: `string`
 
 Required: `true`
 
-Search query string
-
 ### data
+
+Array of items to search
 
 Type: `Array<T>`
 
 Required: `true`
 
-The data containing items to search
-
 ### options
 
 Type: `object`
 
-Requred: `false`
+Required: `false`
 
 #### options.keys
+
+Object key paths in `data`. The value of the key paths will be matched against `query`
 
 Type: `Array<string>`
 
 Required: `false`
-
-Optional array of object paths if provided `data` is of type `Array<object>`
-
-e.g.
 
 ```ts
 const data = [
@@ -76,13 +74,11 @@ useCommandScore("4", data, { keys: ["name", "address.code"] });
 
 #### options.limit
 
+Limits the total results returned
+
 Type: `number`
 
 Required: `false`
-
-Limit the total results returned
-
-e.g.
 
 ```ts
 useCommandScore(query, data, { limit: 5 });
