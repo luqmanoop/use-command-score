@@ -1,0 +1,42 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.movies {
+  list-style: none;
+  margin: 14px 0;
+  width: 500px;
+  max-height: 350px;
+  border: 1px solid #ccc;
+  overflow-y: scroll;
+}
+
+.movie {
+  padding: 10px 0;
+  padding: 12px;
+}
+
+.movie:hover {
+  background-color: #eee;
+}
+
+.movie-title {
+  flex: 1;
+  margin-bottom: 10px;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+input {
+  padding: 4px 8px;
+  width: 400px;
+}
+
+.no-result {
+  padding: 20px;
+}
