@@ -13,6 +13,8 @@ npm install use-command-score
 ## Usage
 
 ```ts
+import { useCommandScore } from "use-command-score";
+
 useCommandScore("vsc", ["Vim", "Google chrome", "Visual studio code"]); // ['Visual studio code']
 ```
 
