@@ -9,6 +9,7 @@ interface CommandScore<T> {
 }
 
 interface Options {
+  keys?: string[];
   limit?: number;
 }
 
@@ -35,8 +36,7 @@ function get<T, DefaultValue>(
  * @template T Type of the data
  * @param {string} query Search query
  * @param {Array<T>} data List of items to search
- * @param {Array<string>} [keys] List of keys to be searched in data. Key value must be a string
- * @example useCommandScore("45", [{ name: "foo", address: { code: 123 } }, { name: "bar", address: { code: 456 } }], ["name", "address.code"])
+ * @example useCommandScore("45", [{ name: "foo", address: { code: '123' } }, { name: "bar", address: { code: '456' } }], {keys: ["name", "address.code"]})
  * // returns [{ name: "bar", address: { code: 456 } }]
  * @example useCommandScore("f", ["foo", "bar"])
  * // returns ["foo"]
@@ -44,11 +44,11 @@ function get<T, DefaultValue>(
 export function useCommandScore<T>(
   query: string,
   data: Array<T>,
-  keys?: string[],
   options?: Options
 ): T[] {
   const dataWithKeywords = useMemo(() => {
     return data.map(item => {
+      const keys = options?.keys;
       if (!keys?.length) return { item, keywords: item };
 
       /* for array of objects, we get the value of key paths from the object,
@@ -67,7 +67,7 @@ export function useCommandScore<T>(
 
       return { item, keywords };
     }) as Array<CommandScore<T>>;
-  }, [data, keys]);
+  }, [data, options?.keys]);
 
   return useMemo(() => {
     if (!query) return data;
