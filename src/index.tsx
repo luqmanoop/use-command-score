@@ -55,7 +55,12 @@ export function useCommandScore<T>(
        *  & join the result to make searchable keywords */
       const keywords = keys
         .map(key => {
-          const value = get<T, string>(item, key, "");
+          let value = get<T, string>(item, key, "");
+
+          if (Array.isArray(value)) {
+            value = value.filter(v => typeof v === "string").join(" ");
+          }
+
           return typeof value === "string" ? value : "";
         })
         .join(" ");
