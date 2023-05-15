@@ -34,20 +34,20 @@ function get<T, DefaultValue>(
 /**
  * Returns a list of matching items sorted by their score
  * @template T Type of the data
- * @param {string} query Search query
- * @param {Array<T>} data List of items to search
+ * @param {string} needle Search query
+ * @param {Array<T>} haystack List of items to search
  * @example useCommandScore("45", [{ name: "foo", address: { code: '123' } }, { name: "bar", address: { code: '456' } }], {keys: ["name", "address.code"]})
  * // returns [{ name: "bar", address: { code: 456 } }]
  * @example useCommandScore("f", ["foo", "bar"])
  * // returns ["foo"]
  */
 export function useCommandScore<T>(
-  query: string,
-  data: Array<T>,
+  needle: string,
+  haystack: Array<T>,
   options?: Options
 ): T[] {
   const dataWithKeywords = useMemo(() => {
-    return data.map(item => {
+    return haystack.map(item => {
       const keys = options?.keys;
       if (!keys?.length) return { item, keywords: item };
 
@@ -67,15 +67,15 @@ export function useCommandScore<T>(
 
       return { item, keywords };
     }) as Array<CommandScore<T>>;
-  }, [data, options?.keys]);
+  }, [haystack, options?.keys]);
 
   return useMemo(() => {
-    if (!query) return data;
+    if (!needle) return haystack;
 
     const indexOfScoredItems: number[] = [];
 
     const dataWithScore = dataWithKeywords.map((item, index) => {
-      const score = commandScore(item.keywords, query);
+      const score = commandScore(item.keywords, needle);
       if (score <= 0) return item;
 
       indexOfScoredItems.push(index);
@@ -93,5 +93,5 @@ export function useCommandScore<T>(
       .map(({ item }) => item);
 
     return options?.limit ? result.slice(0, options.limit) : result;
-  }, [query, data, dataWithKeywords, options?.limit]);
+  }, [needle, haystack, dataWithKeywords, options?.limit]);
 }
