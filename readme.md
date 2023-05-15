@@ -1,6 +1,6 @@
 # use-command-score
 
-> Simple, fast fuzzy search hook
+> Tiny, fast fuzzy ⚡️earch for React applications
 
 Live demo https://use-command-score.vercel.app
 
@@ -15,12 +15,18 @@ npm install use-command-score
 ```ts
 import { useCommandScore } from "use-command-score";
 
-useCommandScore("vsc", ["Vim", "Google chrome", "Visual studio code"]); // ['Visual studio code']
+useCommandScore(needle, haystack, options);
 ```
 
 ## Examples
 
-Match object keys in an array & limit result. [Live demo](https://use-command-score.vercel.app/?path=/story/moviesfuzzysearch--with-limit)
+Search array of strings
+
+```ts
+useCommandScore("vsc", ["Vim", "Google chrome", "Visual studio code"]); // ['Visual studio code']
+```
+
+Search array of objects & limit result [Live demo](https://use-command-score.vercel.app/?path=/story/moviesfuzzysearch--with-limit)
 
 ```ts
 useCommandScore("hger", movies, {
@@ -31,9 +37,9 @@ useCommandScore("hger", movies, {
 
 ## API
 
-`useCommandScore(query, data, keys, options)`
+`useCommandScore(needle, haystack, options)`
 
-### query
+### needle
 
 Search query
 
@@ -41,7 +47,7 @@ Type: `string`
 
 Required: `true`
 
-### data
+### haystack
 
 Array of items to search
 
@@ -57,7 +63,7 @@ Required: `false`
 
 #### options.keys
 
-Object key paths in `data`. The value of the key paths will be matched against `query`
+Object key paths in `haystack`. The value of the key paths will be matched against `needle`
 
 Type: `Array<string>`
 
@@ -81,5 +87,5 @@ Type: `number`
 Required: `false`
 
 ```ts
-useCommandScore(query, data, { limit: 5 });
+useCommandScore(needle, haystack, { limit: 5 });
 ```
