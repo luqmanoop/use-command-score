@@ -1,6 +1,6 @@
 {
   "name": "use-command-score",
-  "version": "0.0.0",
+  "version": "0.0.1-0",
   "description": "Tiny, fast fuzzy ⚡️earch for React applications",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
