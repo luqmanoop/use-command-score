@@ -1,4 +1,5 @@
 /** @type { import('@storybook/react-webpack5').StorybookConfig } */
+import { TsconfigPathsPlugin } from "tsconfig-paths-webpack-plugin";
 import path from "path";
 
 const config = {
@@ -26,6 +27,16 @@ const config = {
   },
   docs: {
     autodocs: "tag"
+  },
+  webpackFinal: async config => {
+    // config.resolve.plugins.push([new TsconfigPathsPlugin()]);
+    return {
+      ...config,
+      resolve: {
+        ...config.resolve,
+        plugins: [...(config.resolve.plugins || []), new TsconfigPathsPlugin()]
+      }
+    };
   }
 };
 export default config;

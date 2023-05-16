@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Meta, StoryObj } from "@storybook/react";
 
-import { useCommandScore } from "../index";
+import { useCommandScore } from "src";
 import "./style.css";
 
 const movies = [
@@ -126,7 +126,8 @@ const Movies = ({ keys, limit }: { keys: string[]; limit?: number }) => {
 
 const meta: Meta = {
   title: "MoviesFuzzySearch",
-  component: Movies
+  component: Movies,
+  excludeStories: ["movies"]
 };
 
 export default meta;
