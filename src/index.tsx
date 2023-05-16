@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 
-import { commandScore } from "./lib";
+import { commandScore } from "./command-score";
 
 interface CommandScore<T> {
   item: T;
