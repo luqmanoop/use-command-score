@@ -41,7 +41,7 @@ function get<T, DefaultValue>(
  * @example useCommandScore("f", ["foo", "bar"])
  * // returns ["foo"]
  */
-export function useCommandScore<T>(
+export function useCommandScore<T extends object | string>(
   needle: string,
   haystack: Array<T>,
   options?: Options
@@ -49,7 +49,9 @@ export function useCommandScore<T>(
   const dataWithKeywords = useMemo(() => {
     return haystack.map(item => {
       const keys = options?.keys;
-      if (!keys?.length) return { item, keywords: item };
+      if (!keys?.length) {
+        return { item, keywords: typeof item === "string" ? item : "" };
+      }
 
       /* for array of objects, we get the value of key paths from the object,
        *  & join the result to make searchable keywords */
@@ -75,7 +77,7 @@ export function useCommandScore<T>(
     const indexOfScoredItems: number[] = [];
 
     const dataWithScore = dataWithKeywords.map((item, index) => {
-      const score = commandScore(item.keywords, needle);
+      const score = commandScore(item.keywords || "", needle);
       if (score <= 0) return item;
 
       indexOfScoredItems.push(index);
