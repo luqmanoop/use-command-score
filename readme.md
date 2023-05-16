@@ -89,3 +89,7 @@ Required: `false`
 ```ts
 useCommandScore(needle, haystack, { limit: 5 });
 ```
+
+## Related
+
+- [command score](https://github.com/superhuman/command-score)
