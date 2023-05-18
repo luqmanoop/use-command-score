@@ -16,7 +16,6 @@
     "build-storybook": "storybook build",
     "test": "jest",
     "test:watch": "jest --watch",
-    "prerelease": "pnpm run \"/^(lint|test|build)$/\"",
     "release": "changeset publish"
   },
   "repository": {
