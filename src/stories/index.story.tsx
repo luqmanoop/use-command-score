@@ -132,12 +132,6 @@ const meta: Meta = {
 
 export default meta;
 
-export const Default: StoryObj<typeof Movies> = {
-  args: {
-    keys: ["title"]
-  }
-};
-
 export const WithNestedKeys: StoryObj<typeof Movies> = {
   args: {
     keys: ["title", "meta.actors", "meta.director"]
