@@ -2,26 +2,24 @@ name: Release
 
 on:
   push:
-    branches:
-      - main
-
-concurrency: ${{ github.workflow }}-${{ github.ref }}
-
+    branches: [main]
 jobs:
+  main:
+    uses: ./.github/workflows/main.yml
   release:
+    if: github.repository_owner == 'codeshifu' && github.ref == 'refs/heads/main'
+    needs: main
     name: Release
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repo
+      - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Setup Node.js 16.x
-        uses: actions/setup-node@v3
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
         with:
-          node-version: 16.x
-
-      - name: Install dependencies
-        run: pnpm install
+          version: 7
+          run_install: true
 
       - name: Create Release Pull Request or Publish to npm
         id: changesets
